@@ -158,3 +158,134 @@ h3 {
   border-color: var(--color-primary-hover);
   color: var(--color-white);
 }
+
+/* ---------- Navbar ---------- */
+html {
+  scroll-padding-top: 72px; /* evita que el header tape el título al navegar por enlaces */
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(245, 241, 232, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-beige);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.header__logo {
+  font-family: var(--font-title);
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.header__logo span {
+  color: var(--color-accent);
+}
+
+/* Menú móvil: panel desplegable */
+.nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6) 20px var(--space-8);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-beige);
+}
+
+.nav.is-open {
+  display: flex;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.nav__link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--color-accent);
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle__bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (min-width: 640px) {
+  .nav {
+    padding-inline: var(--space-6);
+  }
+}
+
+/* Escritorio: menú horizontal */
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-12);
+    padding: 0;
+    background: none;
+    border: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    gap: 28px;
+  }
+}
